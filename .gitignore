@@ -1,3 +1,4 @@
 node_modules/
 Sequelize.txt
 db-test.js
+db.js

@@ -6,12 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     endDate: DataTypes.DATE,
     matchNumber: DataTypes.INTEGER
   }, {});
-  Tournament.associate = function({ User }) {
+  Tournament.associate = function({ User, Match }) {
     // insert association key in target model
     // winnerId -> chave estrangeira
     // as -> alias do método get e set (setWinner, getWinner)
     this.belongsTo(User, { foreignKey: 'winnerId', as: 'winner' });
-    this.belongsToMany(User, { through: 'User_Tournament' });
+    this.belongsToMany(User, { foreignKey: 'tournamentId', through: 'User_Tournament' });
+    this.hasMany(Match, { foreignKey: 'tournamentId', as: 'matches' });
   };
   return Tournament;
 };

@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   User.associate = function({ Match, Tournament }) {
-    this.hasMany(Match, { as: 'matches' });
-    this.belongsToMany(Tournament, { through: 'User_Tournament' });
+    // this.hasMany(Match, { as: 'matches' });
+    this.belongsToMany(Tournament, { foreignKey: 'userId', through: 'User_Tournament' });
   };
   return User;
 };
