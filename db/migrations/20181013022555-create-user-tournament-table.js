@@ -4,6 +4,7 @@ module.exports = {
     return queryInterface.createTable('User_Tournament', {
       userId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Users',
           key: 'id'
@@ -11,6 +12,7 @@ module.exports = {
       },
       tournamentId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Tournaments',
           key: 'id'

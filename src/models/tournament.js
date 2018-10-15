@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     // winnerId -> chave estrangeira
     // as -> alias do método get e set (setWinner, getWinner)
     this.belongsTo(User, { foreignKey: 'winnerId', as: 'winner' });
-    this.belongsToMany(User, { foreignKey: 'tournamentId', through: 'User_Tournament', as: 'players' });
+    this.belongsToMany(User, { foreignKey: 'tournamentId', through: 'User_Tournament', as: 'players', onDelete:'CASCADE' });
     this.hasMany(Match, { foreignKey: 'tournamentId', as: 'matches' });
   };
   return Tournament;
