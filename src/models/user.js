@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function({ Match, Tournament }) {
     // this.hasMany(Match, { as: 'matches' });
-    this.belongsToMany(Tournament, { foreignKey: 'userId', through: 'User_Tournament' });
+    this.belongsToMany(Tournament, { foreignKey: 'userId', through: 'User_Tournament', as: 'tournaments' });
   };
   return User;
 };

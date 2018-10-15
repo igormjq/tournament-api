@@ -32,6 +32,7 @@ module.exports = {
       },
       winnerId: {
         type: Sequelize.INTEGER,
+        defaultValue: null,
         references: {
           model: 'Users',
           key: 'id'
