@@ -6,6 +6,7 @@ class TournamentController {
     
     try {
       let tournaments = await Tournament.findAll();
+      
       res.send({ tournaments });
     } catch (error) {
       res.status(400).send({ error });

@@ -1,8 +1,7 @@
 import { Router } from 'express';
-import Controller from '../controllers/TournamentController';
+import TournamentController from '../controllers/TournamentController';
 
 const router = Router();
-const TournamentController = new Controller();
 
 router.get('/', (req, res) => TournamentController.getAll(req, res));
 
