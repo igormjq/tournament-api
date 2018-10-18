@@ -23,6 +23,11 @@ module.exports = {
       email: 'crisciano@hotmal.com',
       password: '1234'
     },
+    {
+      name: 'Novo Rapaz',
+      email: 'rapazote@gmail.com',
+      password: '1234'
+    }
    ])
   },
 
