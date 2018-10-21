@@ -28,4 +28,30 @@ const generateMatches = async () => {
 
 };
 
-generateMatches();
+/*
+  Pega todos os jogos de determinado campeonato
+*/
+const getMatches = async () => {
+
+  try {
+    let tournament = await Tournament.findById(1, {
+      attributes: ['name'],
+      include: [
+        { 
+          model: Match, as: 'matches',
+          include: [
+            { model: User, as: 'firstPlayer' },
+            { model: User, as: 'secondPlayer' }
+          ]
+        }
+      ]
+  });
+    console.log(JSON.stringify(tournament, null, 2));
+  } catch (error) {
+    console.log(error)
+  }
+
+};
+
+// generateMatches();
+// getMatches();
