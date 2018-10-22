@@ -39,9 +39,10 @@ const getMatches = async () => {
       include: [
         { 
           model: Match, as: 'matches',
+          attributes: ['id'],
           include: [
-            { model: User, as: 'firstPlayer' },
-            { model: User, as: 'secondPlayer' }
+            { model: User, as: 'firstPlayer', attributes:['id', 'name', 'email'] },
+            { model: User, as: 'secondPlayer', attributes:['id', 'name', 'email'] }
           ]
         }
       ]
@@ -54,4 +55,4 @@ const getMatches = async () => {
 };
 
 // generateMatches();
-// getMatches();
+getMatches();
