@@ -54,5 +54,18 @@ const getMatches = async () => {
 
 };
 
+const createUser = async () => {
+
+  try {
+    let user = User.create({ name: 'Igordo', email: 'igorq@gmail.com', password: '1234' });
+
+  } catch(err) {
+    console.log(err);
+  }
+
+}
+
 // generateMatches();
-getMatches();
+// getMatches();
+
+createUser();
