@@ -13,7 +13,7 @@ class UserController {
       res.header('Auth', token).status(201).send(_.pick(user, ['id', 'name', 'email']));
 
     } catch (error) {
-      req.status(404).json({ message: 'User not found '});
+      res.status(404).json({ message: 'User not found '});
     }
     
   }
