@@ -4,14 +4,16 @@
     "password": null,
     "database": "tournament_db",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "JWT_SECRET": "S3Cr&T!JTWtest"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "tournament_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "JWT_SECRET": "S3Cr&T!JTWtest"
   },
   "production": {
     "username": "root",
