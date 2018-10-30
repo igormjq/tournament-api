@@ -7,7 +7,7 @@ module.exports = {
     ' AFTER INSERT ON User_Tournament' +
       ' FOR EACH ROW' +
       ' BEGIN' +
-        ' DECLARE opponentId INT;' +
+        ' DECLARE opponentId CHAR(36);' +
         ' DECLARE finish_loop INT DEFAULT 0;' +
         ' DECLARE players_cursor CURSOR FOR SELECT DISTINCT userId FROM User_Tournament WHERE tournamentId = NEW.tournamentId AND userId != NEW.userId;' +
         'DECLARE CONTINUE HANDLER FOR NOT FOUND SET finish_loop = 1;' +

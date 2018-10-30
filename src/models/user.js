@@ -1,10 +1,12 @@
 'use strict';
 const { hashSync, genSaltSync, compareSync } = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
+const uuid = require('uuid/v4')
 const _ = require('lodash');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    id: DataTypes.UUID,
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
@@ -14,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate(user) {
         const salt = genSaltSync(10);
         user.password = hashSync(user.password, salt);
+        user.id = uuid();
       },
     }
   });
@@ -22,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   /**
-   * Generates a token based in the user id
+   * Generates a token based on the user id
    */
   User.prototype.generateAuthToken = function() {
     return jwt.sign({ id: this.id, email: this.email }, process.env.JWT_SECRET);

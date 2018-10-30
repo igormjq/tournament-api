@@ -31,7 +31,7 @@ module.exports = {
         defaultValue: Sequelize.fn('now')
       },
       winnerId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         defaultValue: null,
         references: {
           model: 'Users',

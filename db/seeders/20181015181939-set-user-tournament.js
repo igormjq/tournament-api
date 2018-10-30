@@ -2,24 +2,11 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-   return queryInterface.bulkInsert('User_Tournament', [
-     {
-      userId: 1,
-      tournamentId: 1
-     },
-     {
-       userId: 2,
-       tournamentId: 1
-     },
-     {
-      userId: 3,
-      tournamentId: 1
-     },
-     {
-      userId: 4,
-      tournamentId: 1 
-     }
-   ])
+    return queryInterface.sequelize.query('SELECT id FROM Users', { type: Sequelize.QueryTypes.SELECT })
+      .then(users => users.map(({ id:userId }) => {
+        return { userId, tournamentId: 1}
+      }))
+      .then(users => queryInterface.bulkInsert('User_Tournament', users))
   },
 
   down: (queryInterface, Sequelize) => {
