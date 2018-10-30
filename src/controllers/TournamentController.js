@@ -3,7 +3,7 @@ import { Tournament } from '../models/'
 class TournamentController {
 
   async getAll(req, res) {
-    
+    console.log('tem usuarioum????', req.user);
     try {
       let tournaments = await Tournament.findAll();
       

@@ -10,7 +10,7 @@ class UserController {
       const user = await User.findByCredentials(targetUser);
       const token = user.generateAuthToken();
 
-      res.header('Auth', token).status(201).send(_.pick(user, ['id', 'name', 'email']));
+      res.header('token', token).status(201).send(_.pick(user, ['id', 'name', 'email']));
 
     } catch (error) {
       res.status(404).json({ message: 'User not found '});

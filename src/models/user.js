@@ -18,12 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   User.associate = function({ Match, Tournament }) {
-    // this.hasMany(Match, { as: 'matches' });
     this.belongsToMany(Tournament, { foreignKey: 'userId', through: 'User_Tournament', as: 'tournaments', onDelete: 'CASCADE' });
   };
 
+  /**
+   * Generates a token based in the user id
+   */
   User.prototype.generateAuthToken = function() {
-    return jwt.sign({ id: this.id }, process.env.JWT_SECRET);
+    return jwt.sign({ id: this.id, email: this.email }, process.env.JWT_SECRET);
   };
 
   /**
@@ -35,6 +37,28 @@ module.exports = (sequelize, DataTypes) => {
     return this.findOne({ where: { email }})
       .then(user => compareSync(password, user.password) ?  user : Promise.reject())
       .catch(err => err);
+  };
+
+  /**
+   * Decodes an user and fetches by the id within the payload
+   * @param {String} token - Token to decode 
+   */
+  User.findByToken = function(token) {
+    let decoded;
+  
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+  
+    } catch (error) {
+      throw 'User not authorized';
+
+    }
+    
+    return this.findById(decoded.id)
+      .then(user => user.toJSON())
+      .then(user => _.pick(user, ['id', 'name', 'email']))
+      .catch(err => console.log(err));
+    
   };
 
   return User;
